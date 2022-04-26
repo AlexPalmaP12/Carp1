@@ -5,7 +5,9 @@
         <group>
             <file>file:/D:/Documents/NetBeansProjects/Carp1/src/carp1/CrearP.java</file>
             <file>file:/D:/Documents/NetBeansProjects/Carp1/src/carp1/Index.java</file>
-            <file>file:/D:/Documents/NetBeansProjects/Carp1/src/carp1/Insumos.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/Carp1/src/carp1/AgregarInventario.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/Carp1/src/carp1/ElimInv.java</file>
+            <file>file:/D:/Documents/NetBeansProjects/Carp1/src/carp1/ModInv.java</file>
         </group>
     </open-files>
 </project-private>
