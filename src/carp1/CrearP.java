@@ -12,8 +12,9 @@ import javax.swing.*;
  */
 
 public class CrearP extends javax.swing.JInternalFrame {
-Connection conn=null;
-PreparedStatement pst =null;
+Connection conn = null;
+PreparedStatement pst = null;
+
 LocalDate today = LocalDate.now();
     /**
      * Creates new form CrearP
@@ -21,7 +22,7 @@ LocalDate today = LocalDate.now();
     public CrearP() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -128,25 +129,35 @@ LocalDate today = LocalDate.now();
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try{
-             
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1","root","1234");
-        JOptionPane.showMessageDialog(null,"Ya jalo");
         
-        String sql = "insert into proyecto" +"(nombre,descripcion,fecha,monto)"+"values(?,?,?,?)";
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-    
-        pstmt.setString(1,nombre.getText());
-        pstmt.setString(2, desc.getText());
-        pstmt.setString(3, today.toString() );
-        pstmt.setInt(4, 0);
-        pstmt.executeUpdate();
-        conn.close();
+        //Prueba la conexión 
+        try{             
+            //Si hay algun campo vacio muestra un mensaje de error
+        Class.forName("com.mysql.jdbc.Driver");
+        if(nombre.getText().equals("") || desc.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Completa todos los campos");
+        }
+        else{
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1");
+            JOptionPane.showMessageDialog(null,"Ya jalo");
+        
+            String sql = "insert into proyecto" +"(nombre,descripcion,fecha,monto)"+"values(?,?,?,?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1,nombre.getText());
+            System.out.println(nombre.getText());
+            pstmt.setString(2, desc.getText());
+            System.out.println(desc.getText());
+            pstmt.setString(3, today.toString() );
+            System.out.println(today.toString());
+            pstmt.setInt(4, 0);
+            pstmt.executeUpdate();
+            conn.close();
+        }        
     }
-    catch(Exception e){
-        JOptionPane.showMessageDialog(null,e);
-    }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

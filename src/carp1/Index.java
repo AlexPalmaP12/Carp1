@@ -12,12 +12,12 @@ import javax.swing.*;
 
 public class Index extends javax.swing.JFrame {
    
-Connection conn =null;
+Connection conn = null;
 public static Connection ConnectDB(){   
     try{
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?zeroDateTimeBehavior=CONVERT_TO_NULL [root on Default schema];user:root;password:;");
-        JOptionPane.showMessageDialog(null,"Connectado a la DB");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?zeroDateTimeBehavior=CONVERT_TO_NULL");
+        JOptionPane.showMessageDialog(null,"Connectado a la DB");       
         return conn;
     }
     catch(Exception e){
@@ -79,6 +79,11 @@ public static Connection ConnectDB(){
         });
 
         jButton3.setText("Proyectos Realizados");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Contacto");
 
@@ -198,6 +203,7 @@ public static Connection ConnectDB(){
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Botón de Crear Proyecto
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         CrearP cp= new CrearP();
@@ -206,24 +212,27 @@ public static Connection ConnectDB(){
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    //Botón de Ver Inventario
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         Inventario in= new Inventario();
         escritorio.add(in);
         in.show();
-        
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    //Botón del Menu
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
         
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    //Botón del Menú
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    //Botón del Menú
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         CrearP cp= new CrearP();
@@ -259,6 +268,15 @@ public static Connection ConnectDB(){
         cp.show();
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    //Botón para ver proyectos hechos
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        VerP vp = new VerP();
+        escritorio.add(vp);
+        vp.show();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */

@@ -132,7 +132,7 @@ public class AgregarInventario extends javax.swing.JInternalFrame {
         try{
              
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria","root","");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
         JOptionPane.showMessageDialog(null,"Ya jalo");
         
         String sql = "insert into inventario" +"(descripcion,precio,cantidad)"+"values(?,?,?)";

@@ -153,7 +153,7 @@ public class ModInv extends javax.swing.JInternalFrame {
 
             
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1");
             //JOptionPane.showMessageDialog(null,"Ya jalo");
 
             int costo = Integer.parseInt(jTextField2.getText());
@@ -175,7 +175,7 @@ public class ModInv extends javax.swing.JInternalFrame {
                 try{
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1");
             //JOptionPane.showMessageDialog(null,"Ya jalo");
 
             String sql = "SELECT * FROM inventario WHERE idinv = ?"; 

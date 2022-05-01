@@ -55,7 +55,6 @@ public class ElimInv extends javax.swing.JInternalFrame {
         jLabel3.setText("Nombre");
 
         jTextField1.setEnabled(false);
-        jTextField1.setOpaque(false);
 
         jLabel4.setText("Costo Unitario"); // NOI18N
 
@@ -158,7 +157,7 @@ public class ElimInv extends javax.swing.JInternalFrame {
         try{
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1");
             //JOptionPane.showMessageDialog(null,"Ya jalo");
 
             String nombre = jTextField1.getText();
@@ -186,7 +185,7 @@ public class ElimInv extends javax.swing.JInternalFrame {
         try{
 
             Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1","root","1234");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1");
            
 
             String sql = "SELECT * FROM inventario WHERE idinv = ?"; 
