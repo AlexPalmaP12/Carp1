@@ -42,6 +42,8 @@ public class ElimInv extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
 
+        setClosable(true);
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Eliminar Inventario");
         jLabel1.setToolTipText("");
@@ -77,6 +79,11 @@ public class ElimInv extends javax.swing.JInternalFrame {
         jTextField4.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField4FocusLost(evt);
+            }
+        });
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
             }
         });
         jTextField4.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -203,6 +210,10 @@ public class ElimInv extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_jTextField4FocusLost
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
