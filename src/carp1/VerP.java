@@ -4,12 +4,15 @@
  */
 package carp1;
 
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+
 
 /**
  *
@@ -32,8 +35,14 @@ public class VerP extends javax.swing.JInternalFrame {
     /**
      * Creates new form VerP
      */
+    /*Declara projectName como publico y static para que pueda ser
+    posteriormente accedido por CotizarP*/
+    public static String projectName;
+    public static String projectDescription;
     public VerP() {
-        initComponents();   
+        
+        initComponents(); 
+        
         System.out.println("Si");
         System.out.println("Ejecucion al principio");
         //Para ordenarla automáticamente
@@ -53,7 +62,9 @@ public class VerP extends javax.swing.JInternalFrame {
         catch(SQLException e){
             JOptionPane.showMessageDialog(null,e);
         }
-    }    
+    }
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,8 +80,15 @@ public class VerP extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        showSelProNam = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Proyectos Creados");
 
         tablaProyectos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,6 +120,7 @@ public class VerP extends javax.swing.JInternalFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Proyectos Realizados");
 
+        jButton1.setBackground(new java.awt.Color(204, 204, 255));
         jButton1.setText("Editar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,10 +128,50 @@ public class VerP extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(204, 255, 204));
+        jButton2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jButton2.setText("Cotizar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        jLabel2.setText("Nombre de proyecto:");
+
+        jDesktopPane1.setPreferredSize(new java.awt.Dimension(863, 446));
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 876, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 484, Short.MAX_VALUE)
+        );
+
+        jScrollPane2.setViewportView(jDesktopPane1);
+
+        jButton3.setText("Actualizar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setBackground(new java.awt.Color(255, 204, 204));
+        jButton5.setText("Borrar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
             }
         });
 
@@ -121,58 +180,121 @@ public class VerP extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(320, 320, 320)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(317, 317, 317)
-                        .addComponent(jButton1)
-                        .addGap(112, 112, 112)
-                        .addComponent(jButton2)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton2))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(173, 173, 173)
+                                        .addComponent(showSelProNam, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton3)
+                        .addGap(30, 30, 30)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 879, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(53, 53, 53)
                 .addComponent(jLabel1)
-                .addGap(33, 33, 33)
+                .addGap(59, 59, 59)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(showSelProNam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(82, Short.MAX_VALUE))
+                    .addComponent(jButton5))
+                .addGap(40, 40, 40))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
     //Obtiene el valor de la celda que se selecciona
     private void tablaProyectosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProyectosMousePressed
         // TODO add your handling code here:
-        String selectedCellValue = (String) tablaProyectos.getValueAt(tablaProyectos.getSelectedRow(), tablaProyectos.getSelectedColumn());
+        //Obtiene el nombre del proyecto seleccionado de la tabla
+        String selectedCellValue = (String) tablaProyectos.getValueAt(tablaProyectos.getSelectedRow(), 0);
         System.out.println(selectedCellValue);
+        //Obtiene la descripcion del proyecto seleccionado
+        String selectedDescript = (String) tablaProyectos.getValueAt(tablaProyectos.getSelectedRow(),1);
+        //Se debe de pasar esta variable a la clase CotizarP
+        VerP.projectName = selectedCellValue;
+        VerP.projectDescription = selectedDescript;
+        //Coloca el nombr en el label designado
+        showSelProNam.setText(this.projectName);
     }//GEN-LAST:event_tablaProyectosMousePressed
-
+    
+    //Call private method inside a public method
+    public void tablaChingona(java.awt.event.MouseEvent evt){
+        tablaProyectosMousePressed(evt);
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        ModiP modp = new ModiP();
+        jDesktopPane1.add(modp);
+        modp.show();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        CotizarP cotizar = new CotizarP();
+        jDesktopPane1.add(cotizar);
+        cotizar.show();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Update_table();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaProyectos;
+    private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JLabel showSelProNam;
+    public javax.swing.JTable tablaProyectos;
     // End of variables declaration//GEN-END:variables
 }

@@ -126,6 +126,7 @@ public class Main
         jButton4.setText("jButton4");
 
         setClosable(true);
+        setTitle("Inventario");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

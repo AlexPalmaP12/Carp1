@@ -44,6 +44,7 @@ LocalDate today = LocalDate.now();
         jLabel4 = new javax.swing.JLabel();
 
         setClosable(true);
+        setTitle("Crear proyecto");
 
         jLabel1.setText("Nombre del Proyecto");
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -65,8 +66,8 @@ LocalDate today = LocalDate.now();
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel5.setText("Crear Proyecto");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel5.setToolTipText("");
 
         jLabel4.setText("Genere un nuevo pryecto para el cliente");
