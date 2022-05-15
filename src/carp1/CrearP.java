@@ -44,7 +44,25 @@ LocalDate today = LocalDate.now();
         jLabel4 = new javax.swing.JLabel();
 
         setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Crear proyecto");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jLabel1.setText("Nombre del Proyecto");
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -140,7 +158,7 @@ LocalDate today = LocalDate.now();
         }
         else{
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1");
-            JOptionPane.showMessageDialog(null,"Ya jalo");
+            JOptionPane.showMessageDialog(null,"Proyecto generado!", "Éxito", 1);
         
             String sql = "insert into proyecto" +"(nombre,descripcion,fecha,monto)"+"values(?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -160,6 +178,14 @@ LocalDate today = LocalDate.now();
             JOptionPane.showMessageDialog(null,e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        // TODO add your handling code here:
+        int result = JOptionPane.showConfirmDialog(null, "Cancelar creacion de proyecto?", "Confirmar cancelar", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION){
+            this.dispose();
+        }
+    }//GEN-LAST:event_formInternalFrameClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

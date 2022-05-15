@@ -62,7 +62,6 @@ public static Connection ConnectDB(){
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -70,11 +69,16 @@ public static Connection ConnectDB(){
         jMenuItem7 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Carpinteria ");
         jLabel1.setAlignmentX(0.5F);
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jPanel2.setAlignmentX(0.0F);
@@ -169,14 +173,6 @@ public static Connection ConnectDB(){
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Borrar Proyecto");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem3);
-
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Inventario");
@@ -266,11 +262,6 @@ public static Connection ConnectDB(){
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     //Botón del Menú
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    //Botón del Menú
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         CrearP cp= new CrearP();
@@ -321,6 +312,14 @@ public static Connection ConnectDB(){
         contacto.show();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        int result = JOptionPane.showConfirmDialog(null, "Desea salir de la aplicacion?\nCualquier cambio no guardado se perdera", "Confirmar cancelar", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION){
+            this.dispose();
+        }
+    }//GEN-LAST:event_formWindowClosing
+
     
     /**
      * @param args the command line arguments
@@ -370,7 +369,6 @@ public static Connection ConnectDB(){
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;

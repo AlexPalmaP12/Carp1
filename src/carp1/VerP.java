@@ -20,8 +20,12 @@ import net.proteanit.sql.DbUtils;
  */
 public class VerP extends javax.swing.JInternalFrame {
     Connection conn = null;
+    Connection conn1 = null;
     ResultSet rs = null;
-    java.sql.PreparedStatement pst = null;   
+    ResultSet rs1 = null;
+    java.sql.PreparedStatement pst = null;
+    java.sql.PreparedStatement pst1 = null;
+    public String nombreProyecto;
     public static Connection ConnectDB(){   
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -88,7 +92,25 @@ public class VerP extends javax.swing.JInternalFrame {
         jButton5 = new javax.swing.JButton();
 
         setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Proyectos Creados");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         tablaProyectos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -247,8 +269,9 @@ public class VerP extends javax.swing.JInternalFrame {
         //Se debe de pasar esta variable a la clase CotizarP
         VerP.projectName = selectedCellValue;
         VerP.projectDescription = selectedDescript;
-        //Coloca el nombr en el label designado
-        showSelProNam.setText(this.projectName);
+        //Coloca el nombr en el label designado       
+        nombreProyecto = (this.projectName);
+        showSelProNam.setText(nombreProyecto);
     }//GEN-LAST:event_tablaProyectosMousePressed
     
     //Call private method inside a public method
@@ -281,7 +304,26 @@ public class VerP extends javax.swing.JInternalFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        // Borrar proyecto
+        try{
+            Connection conn1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            String sql1 = "DELETE FROM proyecto WHERE nombre=" + "'" + nombreProyecto + "'";
+            pst1 = conn1.prepareStatement(sql1);
+            int rs1 = pst1.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Proyecto " + nombreProyecto + " borrado exitosamente!");
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null,e);
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        // TODO add your handling code here:
+        int result = JOptionPane.showConfirmDialog(null, "¿Dejar de ver proyectos creados?\nCualquier cambio se perdera!", "Confirmar cancelar", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION){
+            this.dispose();
+        }
+    }//GEN-LAST:event_formInternalFrameClosing
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
