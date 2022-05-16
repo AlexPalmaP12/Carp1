@@ -52,6 +52,7 @@ public class ModiP extends javax.swing.JInternalFrame {
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 0), new java.awt.Dimension(5, 32767));
 
         setClosable(true);
+        setIconifiable(true);
         setTitle("Modificar proyecto");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
