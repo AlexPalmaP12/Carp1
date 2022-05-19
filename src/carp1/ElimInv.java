@@ -43,6 +43,7 @@ public class ElimInv extends javax.swing.JInternalFrame {
         jTextField4 = new javax.swing.JTextField();
 
         setClosable(true);
+        setIconifiable(true);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Eliminar Inventario");

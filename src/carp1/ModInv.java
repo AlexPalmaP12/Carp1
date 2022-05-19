@@ -44,6 +44,7 @@ public class ModInv extends javax.swing.JInternalFrame {
         jTextField4 = new javax.swing.JTextField();
 
         setClosable(true);
+        setIconifiable(true);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Modificar Inventario");
@@ -57,7 +58,6 @@ public class ModInv extends javax.swing.JInternalFrame {
         jLabel3.setText("Nombre");
 
         jTextField1.setEnabled(false);
-        jTextField1.setOpaque(false);
 
         jLabel4.setText("Costo Unitario"); // NOI18N
 
