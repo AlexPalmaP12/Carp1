@@ -9,6 +9,8 @@ import java.awt.GraphicsConfiguration;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 /**
  *
@@ -18,17 +20,16 @@ import javax.swing.*;
 public class Index extends javax.swing.JFrame {
    
 Connection conn = null;
-public static Connection ConnectDB(){   
-    try{
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?zeroDateTimeBehavior=CONVERT_TO_NULL");
-        JOptionPane.showMessageDialog(null,"Connectado a la DB");       
-        return conn;
+public static Connection ConnectDB() throws SQLException{
+        try {
+            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;     
     }
-    catch(Exception e){
-        JOptionPane.showMessageDialog(null,e);
-    }return null;
-}
     /**
      * 
      * Creates new form Index

@@ -163,8 +163,8 @@ public class ElimInv extends javax.swing.JInternalFrame {
         // TODO add your handling code here: AQUI SE ACTUALIZAA
         try{
 
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1");
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             //JOptionPane.showMessageDialog(null,"Ya jalo");
 
             String nombre = jTextField1.getText();
@@ -191,8 +191,8 @@ public class ElimInv extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try{
 
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1");
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
            
 
             String sql = "SELECT * FROM inventario WHERE idinv = ?"; 

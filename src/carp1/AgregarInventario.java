@@ -149,8 +149,8 @@ public class AgregarInventario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try{
              //Conexión con base de datos
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             JOptionPane.showMessageDialog(null,"Agregado correctamente!");
             
             //Query a la base de datos necesaria

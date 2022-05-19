@@ -152,8 +152,8 @@ public class ModInv extends javax.swing.JInternalFrame {
          try{
 
             
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1");
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             //JOptionPane.showMessageDialog(null,"Ya jalo");
 
             int costo = Integer.parseInt(jTextField2.getText());
@@ -174,8 +174,8 @@ public class ModInv extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
                 try{
 
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria?characterEncoding=latin1");
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             //JOptionPane.showMessageDialog(null,"Ya jalo");
 
             String sql = "SELECT * FROM inventario WHERE idinv = ?"; 

@@ -181,7 +181,7 @@ public class ModiP extends javax.swing.JInternalFrame {
         String description = modifDescription.getText();
         System.out.println(completion);
         try {
-            java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            java.sql.Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             String sql = "UPDATE proyecto "
                     + "SET nombre=" + "'" + completion + "'" +"," + "descripcion = " + "'" +description+ "'"
                     + "WHERE nombre = "+ "'" +oldName+ "'";

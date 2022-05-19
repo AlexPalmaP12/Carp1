@@ -24,8 +24,9 @@ public class Inventario extends javax.swing.JInternalFrame {
     java.sql.PreparedStatement pst = null;
     public static Connection ConnectDB() throws SQLException{
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -41,7 +42,8 @@ public class Inventario extends javax.swing.JInternalFrame {
     //Popula la tabla con los datos de la base de datos
     private void Update_table(){
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            //Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             String sql = "SELECT * FROM inventario";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -58,7 +60,8 @@ public class Main
   {
     try 
   {
-      String url = "jdbc:mysql://localhost:3306/carpinteria?zeroDateTimeBehavior=CONVERT_TO_NULL [root on Default schema]";
+      //String url = "jdbc:mysql://localhost:3306/carpinteria?zeroDateTimeBehavior=CONVERT_TO_NULL [root on Default schema]";
+      String url = "jdbc:sqlite:C:\\carpinteria.sqlite";
       String user = "root";
       String password = "";
     

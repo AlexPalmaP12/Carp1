@@ -28,9 +28,9 @@ public class VerP extends javax.swing.JInternalFrame {
     public String nombreProyecto;
     public static Connection ConnectDB(){   
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
-            JOptionPane.showMessageDialog(null," Conectado chido");             
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
+            JOptionPane.showMessageDialog(null," Conectado.");             
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null,e);
@@ -57,7 +57,7 @@ public class VerP extends javax.swing.JInternalFrame {
     //Popula la tabla con los datos de la base de datos
     private void Update_table(){
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             String sql = "SELECT nombre, descripcion, monto FROM proyecto";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -306,7 +306,7 @@ public class VerP extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         // Borrar proyecto
         try{
-            Connection conn1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            Connection conn1 = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             String sql1 = "DELETE FROM proyecto WHERE nombre=" + "'" + nombreProyecto + "'";
             pst1 = conn1.prepareStatement(sql1);
             int rs1 = pst1.executeUpdate();

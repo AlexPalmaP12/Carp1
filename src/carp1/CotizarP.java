@@ -6,14 +6,17 @@ package carp1;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.MessageFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTable.PrintMode;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
 import net.proteanit.sql.DbUtils;
@@ -50,8 +53,8 @@ public class CotizarP extends javax.swing.JInternalFrame {
     public String totalMount;
     public static Connection ConnectDB() throws SQLException{
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -67,7 +70,7 @@ public class CotizarP extends javax.swing.JInternalFrame {
     //Popula la tabla con los datos de la base de datos
     private void Update_materialComboBox(){
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             String sql = "SELECT descripcion FROM inventario";
             pst = conn.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -380,7 +383,7 @@ public class CotizarP extends javax.swing.JInternalFrame {
         try{
             restante = (limite-cantidadint);
             System.out.println(data1);
-            Connection conn3 = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            Connection conn3 = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             String sql3 = "UPDATE inventario "
                     + "SET cantidad=" + "'" + restante + "'"
                     + "WHERE descripcion = "+ "'" +data1+ "'"; 
@@ -426,7 +429,7 @@ public class CotizarP extends javax.swing.JInternalFrame {
         // Para actualizar en automático el comboBox
         String selectedMaterial = materialComboBox.getSelectedItem().toString();
         try{
-            conn1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            conn1 = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             String sql2 = "SELECT cantidad FROM inventario WHERE descripcion = '" + selectedMaterial + "'";         
             pst1 = conn1.prepareStatement(sql2);
             rs1 = pst1.executeQuery();
@@ -454,7 +457,7 @@ public class CotizarP extends javax.swing.JInternalFrame {
             System.out.println(costoTotal.getText());
             int montoTotalillo = Integer.parseInt(costoTotal.getText());
             String nombreToUpdate = String.valueOf(nameProjectToCotizar.getText());
-            conn4 = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            conn4 = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             String sqlA = "UPDATE proyecto "
                     + "SET monto=" + "'" + montoTotalillo + "'"
                     + "WHERE nombre = "+ "'" + nombreToUpdate + "'";         
@@ -470,7 +473,14 @@ public class CotizarP extends javax.swing.JInternalFrame {
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Update_monto();
+        //Update_monto();
+        MessageFormat headerFormat = new MessageFormat("Cliente: " + nameClient.getText() + " | Correo: "+ "\n" +emailClient.getText());
+        MessageFormat footerFormat = new MessageFormat("Costo Total: " + costoTotal.getText());
+        try{
+        jTable2.print(PrintMode.FIT_WIDTH, headerFormat, footerFormat);
+        } catch (PrinterException ex) {
+            Logger.getLogger(CotizarP.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -490,7 +500,7 @@ public class CotizarP extends javax.swing.JInternalFrame {
 public void getPrecioUnitario(){
     String selectedMaterial = materialComboBox.getSelectedItem().toString();
     try{
-        conn2 = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+        conn2 = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             String sql2 = "SELECT precio FROM inventario WHERE descripcion = '" + selectedMaterial + "'";         
             pst2 = conn2.prepareStatement(sql2);
             rs2 = pst2.executeQuery();
@@ -508,7 +518,7 @@ public void getPrecioUnitario(){
         System.out.println(materialComboBox.getSelectedItem().toString());
         String selectedMaterial = materialComboBox.getSelectedItem().toString();
         try{
-            conn1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpinteria");
+            conn1 = DriverManager.getConnection("jdbc:sqlite:C:\\carpinteria.sqlite");
             String sql2 = "SELECT cantidad FROM inventario WHERE descripcion = '" + selectedMaterial + "'";         
             pst1 = conn1.prepareStatement(sql2);
             rs1 = pst1.executeQuery();
